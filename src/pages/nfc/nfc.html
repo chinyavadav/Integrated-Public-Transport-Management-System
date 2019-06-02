@@ -1,0 +1,19 @@
+<ion-content class="vertical-align-content">
+  <ion-grid>
+    <ion-row>
+      <ion-col col-2></ion-col>
+      <ion-col col-8 style="margin-left: auto;margin-right: auto;display: block;">
+        <img src="assets/imgs/nfc.png" style="width:100%;height:auto;">
+      </ion-col>
+      <ion-col col-2></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-title text-center text-uppercase>{{ caption }}</ion-title>
+    </ion-row>
+  </ion-grid>
+  <ion-fab right bottom>
+    <button ion-fab color="danger" (click)="scanNFC()">
+      <ion-icon name="wifi"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

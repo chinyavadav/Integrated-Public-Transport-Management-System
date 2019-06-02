@@ -1,0 +1,48 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <img src="assets/imgs/logo.png" style="width:100%;height:auto;">
+          </ion-col>
+          <ion-col col-8>
+            <br><ion-title text-center>P.T.F.C.S</ion-title>
+            <ion-label text-center text-uppercase>
+              <b ion-text color="secondary">No Cash, No Hustle!</b></ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </ion-header>
+ 
+  <ion-content padding>
+    <ion-list>
+    	<button menuClose ion-item detail-none>
+    		<ion-icon item-start name="home"></ion-icon> Home</button>
+    	<button menuClose ion-item detail-none (click)="openPage(0)">
+    		<ion-icon item-start name="cash"></ion-icon> Collected Fares</button>
+      <button menuClose ion-item detail-none (click)="openPage(1)">
+        <ion-icon item-start name="bus"></ion-icon> Trips</button>
+    	<ion-item-divider>Account</ion-item-divider>
+      <ion-item>
+        <ion-icon item-start name="contact"></ion-icon>
+        <h2><b>{{ global.dispSession.name }}</b></h2>
+        <hr/>
+        <h2>0{{ global.dispSession.terminalid }}</h2>
+      </ion-item>
+    	<button menuClose ion-item detail-none (click)="openPage(2)">
+    		<ion-icon item-start name="cog"></ion-icon> Settings</button>
+    	<button menuClose ion-item detail-none (click)="logout()">
+    		<ion-icon item-start name="log-out"></ion-icon> Logout</button>
+    </ion-list>
+   </ion-content>
+   	<ion-footer padding>
+  		<ion-label text-center>
+        Ministry of Transport and Infrastructure Development<br> App v.1.0.2
+  		</ion-label>	
+	</ion-footer>
+  </ion-menu>
+ 
+<!-- main navigation -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar color="danger">
+    <ion-title>PTFCS</ion-title>
+    <ion-buttons start>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>    
+  </ion-navbar>
+</ion-header>
+<ion-content padding style="background: none transparent;">
+  <ion-tabs tabOrientation="top"  tab  tabsLayout="icon-start" color="danger">
+    <ion-tab tabIcon="qr-scanner" tabTitle="QRCode" [root]="qrcodePage"></ion-tab>
+    <ion-tab tabIcon="wifi" tabTitle="NFC" [root]="nfcPage"></ion-tab>
+  </ion-tabs>
+</ion-content>

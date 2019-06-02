@@ -1,0 +1,59 @@
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import { Http } from '@angular/http';
+import { GlobalProvider } from "../../providers/global/global";
+
+/**
+ * Generated class for the TripsPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
+@Component({
+  selector: 'page-mytrips',
+  templateUrl: 'mytrips.html',
+})
+export class MytripsPage {
+	trips:any;
+  	tripFilter = 'today';
+  	total:number=0;
+	constructor(public toastCtrl:ToastController, public http:Http,public global:GlobalProvider,public navCtrl: NavController, public navParams: NavParams) {
+	}
+
+	ionViewDidLoad() {
+		console.log('ionViewDidLoad TripsPage');
+		this.getTrip(this.tripFilter);
+	}
+	
+	getTotal(){
+		this.total=0;
+		for(var i=0;i<this.trips.length;i++){
+			this.total=this.total+parseInt(this.trips[i].fldamount);
+		}
+	}
+
+	getTrip(criteria: any) {
+		if(criteria=="0" || criteria=="1"){
+			var list=["today","all"];
+			criteria=list[criteria];
+		}
+		this.tripFilter=criteria;
+		this.http.get(this.global.serverAddress+"api/mytrips.php?phoneno="+this.global.session.fldphoneno+"&type="+this.tripFilter)
+		.subscribe(data => {
+			this.trips=JSON.parse(data["_body"]);
+			this.getTotal();
+		}, error => {
+			let toast = this.toastCtrl.create({
+              message: 'Please connect to Internet!',
+              duration: 3000,
+              position: 'bottom',
+              cssClass: 'dark-trans',
+              closeButtonText: 'OK',
+              showCloseButton: true
+            });
+            toast.present();
+		});
+  	}
+}
